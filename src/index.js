@@ -28,11 +28,6 @@ function openImageModal(name, link) {
   openModal(popup);
 }
 
-const closeButton = popup.querySelector(".popup__close");
-closeButton.addEventListener("click", () => {
-  closeModal(popup);
-});
-
 initialCards.forEach((card) => {
   const newCard = createCard(
     card.name,
@@ -68,20 +63,29 @@ const addButton = document.querySelector(".profile__add-button");
 const closeModalButtons = document.querySelectorAll(".popup__close");
 const openModalButtons = [editButton, addButton];
 
-openModalButtons.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    const activeModal = document.querySelector(".popup.popup_is-active");
-    if (!activeModal) {
-      openModal(modals[index]);
-    }
-    newPlaceForm.reset();
-  });
+openModalButtons[0].addEventListener("click", () => {
+  const activeModal = document.querySelector(".popup.popup_is-active");
+  if (!activeModal) {
+    openModal(modals[0]);
+  }
+  nameField.value = nameValue;
+  aboutMeField.value = aboutMeValue;
 });
 
-closeModalButtons.forEach((button, index) => {
-  button.addEventListener("click", () => {
-    closeModal(modals[index]);
-  });
+openModalButtons[1].addEventListener("click", () => {
+  const activeModal = document.querySelector(".popup.popup_is-active");
+  if (!activeModal) {
+    openModal(modals[1]);
+  }
+  newPlaceForm.reset();
+});
+
+closeModalButtons[0].addEventListener("click", () => {
+  closeModal(modals[0]);
+});
+
+closeModalButtons[1].addEventListener("click", () => {
+  closeModal(modals[1]);
 });
 
 const formEditProfile = document.querySelector(".popup__form");
@@ -112,6 +116,3 @@ const aboutMeValue = document.querySelector(
 
 const nameField = document.querySelector(".popup__input_type_name");
 const aboutMeField = document.querySelector(".popup__input_type_description");
-
-nameField.value = nameValue;
-aboutMeField.value = aboutMeValue;

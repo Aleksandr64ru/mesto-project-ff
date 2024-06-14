@@ -1,8 +1,4 @@
 const cardTemplate = document.getElementById("card-template").content;
-const placesList = document.querySelector(".places__list");
-const newPlaceForm = document.querySelector('.popup__form[name="new-place"]');
-const inputPlace = document.querySelector('.popup__input[name="place-name"]');
-const inputLink = document.querySelector('.popup__input[name="link"]');
 
 function createCard(name, link, deleteCallback, openImageModal, toggleLike) {
   const cardElement = cardTemplate.cloneNode(true);
