@@ -58,34 +58,27 @@ newPlaceForm.addEventListener("submit", (evt) => {
 });
 
 const modals = document.querySelectorAll(".popup");
+const editModal = document.querySelector(".popup_type_edit");
+const addModal = document.querySelector(".popup_type_new-card");
 const editButton = document.querySelector(".profile__edit-button");
 const addButton = document.querySelector(".profile__add-button");
 const closeModalButtons = document.querySelectorAll(".popup__close");
-const openModalButtons = [editButton, addButton];
 
-openModalButtons[0].addEventListener("click", () => {
-  const activeModal = document.querySelector(".popup.popup_is-active");
-  if (!activeModal) {
-    openModal(modals[0]);
-  }
+editButton.addEventListener("click", () => {
+  openModal(editModal);
   nameField.value = nameValue;
   aboutMeField.value = aboutMeValue;
 });
 
-openModalButtons[1].addEventListener("click", () => {
-  const activeModal = document.querySelector(".popup.popup_is-active");
-  if (!activeModal) {
-    openModal(modals[1]);
-  }
+addButton.addEventListener("click", () => {
+  openModal(addModal);
   newPlaceForm.reset();
 });
 
-closeModalButtons[0].addEventListener("click", () => {
-  closeModal(modals[0]);
-});
-
-closeModalButtons[1].addEventListener("click", () => {
-  closeModal(modals[1]);
+closeModalButtons.forEach((button, index) => {
+  button.addEventListener("click", () => {
+    closeModal(modals[index]);
+  });
 });
 
 const formEditProfile = document.querySelector(".popup__form");
