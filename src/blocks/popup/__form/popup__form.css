@@ -1,3 +1,22 @@
 .popup__form {
   margin-top: 27px;
 }
+
+.popup__input_type_error {
+  border-bottom-color: red;
+} 
+
+.popup__input:invalid {
+  border-bottom: 1px solid red;
+}
+
+.form__input_error {
+  color: red;
+  font-size: 12px;
+}
+
+/* .form__set  {
+  margin: 0;
+  padding: 0;
+  border: none;
+} */
