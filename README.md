@@ -4,19 +4,19 @@
 
 Данный проект - это социальная сеть где пользователи могут добавлять картинки с помощью ссылок и делать к ним подписи
 
-![альтернативный текст](https://imgur.com/pjzDD3B```)
+![альтернативный текст](https://i.ibb.co/2ZBtTtT/project.png```)
 
 
 ## Для разработки проекта использовано
 
-CSS
-Flexbox
-Grid layout
-Media queries
-JS 
-API (using fetch)
-Live form validation
-BEM Nested methodology
+CSS<br>
+Flexbox<br>
+Grid layout<br>
+Media queries<br>
+JS<br>
+API (using fetch)<br>
+Live form validation<br>
+BEM Nested methodology<br>
 Webpack5
 
 ## Авторы
