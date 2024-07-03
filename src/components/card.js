@@ -1,5 +1,6 @@
 const cardTemplate = document.querySelector("#card-template").content;
 
+
 function createCard(card, personId, handleCardDelete, handleCardLike, handleCardPreview) {
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");

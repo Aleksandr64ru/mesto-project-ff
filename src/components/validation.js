@@ -7,6 +7,7 @@ const validationSettings = {
   errorClass: 'popup__error_visible'
 };
 
+
 function enableValidation(validationSettings) {
   const formElementAll = Array.from(document.querySelectorAll(validationSettings.formSelector));
   formElementAll.forEach((formElement) => {
@@ -75,6 +76,7 @@ if (hasInvalidInput(inputList)) {
   buttonElement.classList.remove(validationSettings.inactiveButtonClass);
 }
 };
+
 
 const hasInvalidInput = (inputList) => {
 return inputList.some((inputElement) => {
