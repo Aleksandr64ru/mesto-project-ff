@@ -6,9 +6,10 @@ import {
 } from "./components/card.js";
 import { handlePopupClick, openPopup, closePopup } from "./components/modal.js";
 import {
-  validationSettings,
   enableValidation,
   clearValidation,
+  isValid,
+  toggleButtonState,
 } from "./components/validation.js";
 import {
   getInitialCards,
@@ -25,13 +26,17 @@ const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
 const editForm = document.forms.namedItem("edit-profile");
 const nameInput = document.querySelector(".popup__input_type_name");
-const descriptionInput = document.querySelector(".popup__input_type_description");
+const descriptionInput = document.querySelector(
+  ".popup__input_type_description"
+);
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileEditSubmitButton = editForm.querySelector(".popup__button");
 
 const cardAddButton = document.querySelector(".profile__add-button");
 const imageUrlInput = document.querySelector(".popup__input_type_url");
-const imageDescriptionInput = document.querySelector(".popup__input_type_card-name");
+const imageDescriptionInput = document.querySelector(
+  ".popup__input_type_card-name"
+);
 const addForm = document.forms.namedItem("new-place");
 const addSubmitButton = addForm.querySelector(".popup__button");
 
@@ -51,6 +56,15 @@ const editPopupElement = document.querySelector(".popup_type_edit");
 const addPopupElement = document.querySelector(".popup_type_new-card");
 const popupsArray = Array.from(document.querySelectorAll(".popup"));
 
+const validationSettings = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
 function renderInitialCards() {
   Promise.all([getInitialCards(), getPersonInfo()])
     .then(([cards, personalInfo]) => {
@@ -64,7 +78,7 @@ function renderInitialCards() {
           personalInfo._id,
           deleteCardHandler,
           likeCardHandler,
-          prevewCard,
+          prevewCard
         );
         cardContainer.append(newCard);
       });
@@ -73,7 +87,6 @@ function renderInitialCards() {
       console.log(err);
     });
 }
-
 
 function deleteCardHandler(cardElement, cardId) {
   deleteCard(cardId)
@@ -131,7 +144,7 @@ function handleAddFormSubmit(evt) {
         newCard.owner._id,
         deleteCardHandler,
         likeCardHandler,
-        prevewCard,
+        prevewCard
       );
       cardContainer.prepend(createdCard);
       closePopup(addPopupElement);
@@ -192,7 +205,19 @@ function handleEditPopupOpen() {
   openPopup(editPopupElement);
   nameInput.value = profileTitle.textContent;
   descriptionInput.value = profileDescription.textContent;
+
   clearValidation(editPopupElement, validationSettings);
+
+  const formInputArray = Array.from(
+    editPopupElement.querySelectorAll(validationSettings.inputSelector)
+  );
+  const buttonElement = editPopupElement.querySelector(
+    validationSettings.submitButtonSelector
+  );
+  formInputArray.forEach((inputElement) => {
+    isValid(editPopupElement, inputElement, validationSettings);
+  });
+  toggleButtonState(formInputArray, buttonElement, validationSettings);
 }
 
 function handleAddPopupOpen() {
